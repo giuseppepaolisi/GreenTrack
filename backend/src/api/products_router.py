@@ -10,7 +10,8 @@ def get_products(conn = Depends(db_manager.get_conn)):
     return {"products": ProductsController.get_all_products(conn)}
 
 @router.post("/", response_model=BaseProductOutput, status_code=status.HTTP_201_CREATED)
-def add_product(product: BaseProductInput, conn = Depends(db_manager.get_conn)):
+def add_product(product: BaseProductInput, conn = Depends(db_manager.get_conn)) -> BaseProductOutput:
     new_product = ProductsController.add_product(product, conn)
-    print(f"-----> {new_product}")
-    return {**new_product.dict()}
+    return new_product
+
+# regex

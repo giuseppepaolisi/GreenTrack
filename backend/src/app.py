@@ -2,18 +2,19 @@ from fastapi import FastAPI
 from core.database import db_manager
 import uvicorn
 from api.products_router import router as products_router
+from contextlib import asynccontextmanager
 
-app = FastAPI()
 
-
-@app.on_event("startup")
-def startup():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # startup
     db_manager.create_connection()
-    db_manager.init_db("init.sql") # inizializzazione db
-    
-@app.on_event("shutdown")
-def shutdown():
+    db_manager.init_db("init.sql")
+    yield
+    # shutdown
     db_manager.close_all()
+
+app = FastAPI(lifespan=lifespan)
     
 app.include_router(products_router)
 
