@@ -1,0 +1,24 @@
+# --- Python / Backend ---
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.env
+*.log
+
+# --- Node / Frontend ---
+node_modules/
+dist/
+dist-ssr
+*.local
+.vscode/
+
+# --- Database / Docker ---
+.db_data/
+postgres_data/
+
+# --- OS / Sistema ---
+.DS_Store
+Thumbs.db
