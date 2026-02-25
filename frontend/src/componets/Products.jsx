@@ -1,6 +1,5 @@
 
-const Products = ({products, isLoading}) => {
-
+const Products = ({products, isLoading, onDelete}) => {
 
 
     return (
@@ -17,6 +16,7 @@ const Products = ({products, isLoading}) => {
                             <th>Nome</th>
                             <th>Prezzo</th>
                             <th>Quantità</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,6 +27,7 @@ const Products = ({products, isLoading}) => {
                                     <td>{product.name}</td>
                                     <td>{product.price}</td>
                                     <td>{product.quantity}</td>
+                                    <td><button onClick={() => onDelete(product.id)}>Elimina</button></td>
                                 </tr>
                             )
                         )}

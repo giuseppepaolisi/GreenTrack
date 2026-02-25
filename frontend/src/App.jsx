@@ -41,6 +41,19 @@ function App() {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`/api/products/${id}`,{
+        method: "DELETE",
+        headers: {"content-type": "application/json"},
+      });
+      if(!response.ok) throw Error("Errore cancellazione");
+      setTriegger(true)
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
     laodData()
     setTriegger(false);
@@ -49,7 +62,7 @@ function App() {
   return (
     <div>
       <label>test</label>
-      <Products products={products} isLoading={isLoading}/>
+      <Products products={products} isLoading={isLoading} onDelete={handleDelete}/>
       <InputForm onSave={handleInput} />
     </div>
   )
