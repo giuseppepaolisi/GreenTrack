@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from core.database import db_manager
 import uvicorn
 from api.products_router import router as products_router
@@ -15,7 +16,15 @@ async def lifespan(app: FastAPI):
     db_manager.close_all()
 
 app = FastAPI(lifespan=lifespan)
-    
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app.include_router(products_router)
 
 @app.get("/")
