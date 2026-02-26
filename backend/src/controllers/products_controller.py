@@ -1,5 +1,12 @@
 from schema import BaseProductInput, BaseProductOutput
 from models.products_model import ProductsModel
+"""
+    La differenza è nel tipo di dati che stai unpacking:
+
+*p → unpacking di sequenze (liste, tuple): distribuisce gli elementi come argomenti posizionali
+**p → unpacking di dizionari: distribuisce le coppie chiave-valore come argomenti con nome (keyword arguments)
+
+"""
 
 class ProductsController:
     
