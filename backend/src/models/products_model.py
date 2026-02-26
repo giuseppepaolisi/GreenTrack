@@ -14,7 +14,6 @@ class ProductsModel:
                 (product.name, product.price, product.quantity, product.category_id)
             )
             new_product = cur.fetchone()
-            conn.commit()
             return new_product
         
         return None

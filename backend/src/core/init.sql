@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS categories (
     id SERIAL PRIMARY KEY,
     name VARCHAR(20) NOT NULL,
-    description VARCHAR(255)
+    description VARCHAR(265)
 );
 CREATE TABLE IF NOT EXISTS products (
     id SERIAL PRIMARY KEY,

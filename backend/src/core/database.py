@@ -26,9 +26,15 @@ class DBManager:
             raise e
         
     def get_conn(self):
-        conn = self._pool.getconn()
         try:
+            conn = self._pool.getconn()
+
             yield conn
+            
+            conn.commit()
+        except Exception as e:
+            conn.rollback()
+            print("Errore connessione", e)
         finally:
             self._pool.putconn(conn)
             
