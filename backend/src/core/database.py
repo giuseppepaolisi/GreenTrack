@@ -36,6 +36,7 @@ class DBManager:
         except Exception as e:
             conn.rollback()
             print("Errore connessione", e)
+            raise
         finally:
             self._pool.putconn(conn)
             
