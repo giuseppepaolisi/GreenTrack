@@ -27,9 +27,8 @@ class DBManager:
             raise e
         
     def get_conn(self):
+        conn = self._pool.getconn()
         try:
-            conn = self._pool.getconn()
-
             yield conn
             
             conn.commit()
